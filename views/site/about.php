@@ -4,15 +4,18 @@
 
 use yii\helpers\Html;
 
-$this->title = 'About';
+$this->title = 'О нас';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        This is the About page. You may modify the following file to customize its content:
-    </p>
+        Наши контакты: 
+        <p><?php echo 'Почта: ',\Yii::$app->params['companyEmail']; ?></p>
+        <p><?php echo 'Телефон: ',\Yii::$app->params['companyPhone']; ?></p>
 
-    <code><?= __FILE__ ?></code>
+    </p>
+<!-- 
+    <code><?= __FILE__ ?></code> -->
 </div>

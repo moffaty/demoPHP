@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var app\models\Report $model */
 
 $this->title = 'Создать запись';
-$this->params['breadcrumbs'][] = ['label' => 'Reports', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Записи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="report-create">

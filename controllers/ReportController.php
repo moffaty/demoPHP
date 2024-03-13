@@ -10,6 +10,7 @@ use app\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 use Yii;
 /**
  * ReportController implements the CRUD actions for Report model.
@@ -84,8 +85,9 @@ class ReportController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->user_id = $user->id;
+                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
                 $model->status_id = Status::STATUS_NEW;
-                if ($model->save()) {
+                if ($model->save() && $model->upload()) {
                     return $this->redirect('/report/index');
                 }
             }

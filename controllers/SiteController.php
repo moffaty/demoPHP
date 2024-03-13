@@ -130,6 +130,7 @@ class SiteController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->role_id = Role::USER_ROLE_ID;
+                $model->setPassword();
                 if ($model->save()) {
                     return $this->redirect('/site/login');
                 }

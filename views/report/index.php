@@ -56,6 +56,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'enableSorting' => true,
             ],
             [
+                'attribute' => 'imageFile',
+                'content' => function ($report) {
+                    return '<img src="/uploads/' . $report->imageFile . '" title="' . $report->imageFile . '" alt="Картинка)">';
+                },
+            ],
+            [
                 'attribute' => 'user_id',
                 'visible' => Yii::$app->user->identity->role_id == Role::ADMIN_ROLE_ID ? true : false,
                 'filter' => $users,

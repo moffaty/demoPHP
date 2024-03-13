@@ -12,6 +12,7 @@ use Yii;
  * @property string|null $description
  * @property int|null $user_id
  * @property int|null $status_id
+ * @property yii\web\UploadedFile|string|null $imageFile
  *
  * @property Status $status
  * @property User $user
@@ -37,7 +38,18 @@ class Report extends \yii\db\ActiveRecord
             [['number'], 'string', 'max' => 127],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status_id' => 'id']],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
+    }
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -51,6 +63,7 @@ class Report extends \yii\db\ActiveRecord
             'description' => 'Описание',
             'user_id' => 'Имя пользователя',
             'status_id' => 'Статус',
+            'imageFile' => 'Загрузка фото',
         ];
     }
 
